@@ -46,8 +46,8 @@ session_start();
 
         if (isset($_POST['submit'])) {
             //update password in admins tabel 
-            $password =$_POST['passwordCheck'];
-            $sql = "UPDATE admins SET password=$password WHERE username='" . $_SESSION['username'] . "'";
+            $password =md5($_POST['passwordCheck']);
+            $sql = "UPDATE admins SET password='".$password."' WHERE username='" . $_SESSION['username'] . "'";
             $result = mysqli_query($conn, $sql);
             
             if ($result) {

@@ -96,7 +96,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                                     <p class="text-dark mb-0">Ordered Time : ' . $row['order_time'] . '</p>
 
                                     <br>
-                                    <button class="btn btn-danger btn-sm" onclick="deleteFoodOrder()">Delete</button>
+                             
                                     <a class="btn btn-primary btn-sm" href="orderConfirm.php?order_id=' . $row['order_id'] . '" role="button">Confirm order</a>
 
                                 </div>

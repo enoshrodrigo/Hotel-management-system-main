@@ -48,6 +48,7 @@ session_start()
                     <h1 id="demo"></h1>
                     </p>
                 </div>
+                 
                 <div class="card-body">
 
 
@@ -97,7 +98,7 @@ session_start()
                                     <p class="text-dark mb-0">Ordered Time : ' . $row['order_time'] . '</p>
 
                                     <br>
-                                    <button class="btn btn-danger btn-sm" onclick="deleteFoodOrder()">Delete</button>
+                                    <!--<button class="btn btn-danger btn-sm" onclick="deleteFoodOrder()">Delete</button>-->
                                     <a class="btn btn-primary btn-sm" href="orderConfirm.php?order_id=' . $row['order_id'] . '" role="button">Confirm order</a>
 
                                 </div>
