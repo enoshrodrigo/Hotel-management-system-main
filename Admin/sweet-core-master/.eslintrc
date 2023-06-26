@@ -1,0 +1,30 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype",
+    "prettier"
+  ],
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "ecmaVersion": 6,
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:flowtype/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": ["error", {
+      "singleQuote": true,
+      "trailingComma": "all"
+    }],
+    "no-constant-condition": ["error", { "checkLoops": false }],
+    "no-console": ["warn"],
+    "no-unused-vars": ["error", { "args": "none"}],
+    "flowtype/no-types-missing-file-annotation": "warn"
+  }
+}

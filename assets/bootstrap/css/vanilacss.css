@@ -1,0 +1,38 @@
+#vanilacontainer-fluid{
+    min-width: 114vh;
+    /* width: 140vh; */
+   
+
+}
+
+#vanilacard-shadow
+{
+      border-radius: 12px;
+}
+
+#vanilaformfields{
+/* width: 40px; */
+}
+
+#vanilacard-body{
+    /* padding-left:12px;
+    padding-right:12px; */
+}
+
+.popup{
+    /* min-width: 300px; */
+    width: auto;
+    height: auto;
+    position: fixed;
+    /* margin: auto; */
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    padding: 20px;
+    /* margin-top: 10px; */
+    overflow: auto;
+    z-index: 999;
+
+}
+
+ 

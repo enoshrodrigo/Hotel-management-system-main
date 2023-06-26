@@ -1,0 +1,98 @@
+{
+  "name": "@sweet-js/core",
+  "description": "Hygienic Macros for JavaScript",
+  "main": "dist/sweet.js",
+  "version": "3.0.13",
+  "engines": {
+    "node": ">=7.0.0"
+  },
+  "author": "Tim Disney",
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "http://github.com/sweet-js/sweet.js/master/LICENSE.BSD"
+    }
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "lint": "eslint src test && flow",
+    "format": "eslint src test --fix",
+    "prebuild": "mkdir -p dist/",
+    "build:src": "babel --out-dir dist/ src --plugins transform-es2015-modules-commonjs",
+    "build": "npm run build:src",
+    "preprofile": "npm run build",
+    "profile": "node --prof profile.js && node --prof-process *v8.log > v8-processed.log && rm *v8.log",
+    "pretest": "npm run lint",
+    "test:262": "ava test/parser/test-run-test262.js",
+    "test:ci": "npm run pretest && ava && ava test/parser/test-*.js",
+    "test": "ava",
+    "report": "nyc ava && nyc report--reporter=html",
+    "prepublish": "npm run build"
+  },
+  "files": [
+    "dist",
+    "helpers.js"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "babel-core": "^6.18.0",
+    "immutable": "^3.8.1",
+    "ramda": "^0.22.0",
+    "ramda-fantasy": "^0.6.0",
+    "readtable": "^0.0.1",
+    "resolve": "^1.1.7",
+    "semver": "^5.3.0",
+    "shift-codegen": "^5.0.4",
+    "shift-reducer": "^4.0.1",
+    "sweet-spec": "4.0.0",
+    "transit-js": "^0.8.846",
+    "utils-dirname": "^1.0.0"
+  },
+  "devDependencies": {
+    "angular": "1.6.0",
+    "ava": "^0.19.1",
+    "babel-cli": "^6.18.0",
+    "prettier-eslint": "^5.1.0",
+    "babel-eslint": "^7.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-transform-flow-strip-types": "^6.14.0",
+    "babel-preset-node7": "1.4.0",
+    "babel-register": "6.18.0",
+    "eslint": "^3.7.1",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-prettier": "^2.1.2",
+    "event-stream": "^3.3.2",
+    "expect.js": "0.3.x",
+    "flow-bin": "^0.45.0",
+    "jquery": "3.1.1",
+    "nyc": "^6.0.0",
+    "prettier": "^1.5.3",
+    "rimraf": "^2.6.1",
+    "source-map": "~0.5.3",
+    "source-map-support": "^0.4.0",
+    "webpack": "^1.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sweet-js/sweet.js.git"
+  },
+  "keywords": [
+    "macros",
+    "javascript"
+  ],
+  "license": "BSD-2-Clause",
+  "ava": {
+    "failWithoutAssertions": false,
+    "babel": "inherit",
+    "files": [
+      "test/unit/*.js",
+      "test/parser/test-ast.js"
+    ],
+    "require": [
+      "babel-register"
+    ]
+  }
+}
