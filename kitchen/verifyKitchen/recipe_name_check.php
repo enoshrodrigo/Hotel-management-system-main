@@ -22,8 +22,14 @@
 // }
 if(isset($_POST['recipe_name_check'])){
     $recipe_name_check = $_POST['recipe_name_check'];
-    $conn=mysqli_connect("localhost","root","","hotel");
-    $query="select * from recipe where recipe_name='$recipe_name_check'";
+   
+    //if recipe_name_check contain numbers or special characters then it will not allow to submit
+
+    if(preg_match("/^[a-zA-Z ]*$/",$recipe_name_check))
+ 
+    {
+      $conn=mysqli_connect("localhost","root","","hotel");
+      $query="select * from recipe where recipe_name='$recipe_name_check'";
     $result=mysqli_query($conn,$query);
     if(mysqli_num_rows($result)>0)
     {
@@ -64,7 +70,26 @@ if(isset($_POST['recipe_name_check'])){
     mysqli_close($conn);
 
 
+}else{
+    echo "<span class='text-danger'>Recipe Name Not Valid</span> <script>
+        
+    $('#submit_food').attr('disabled',true);
+    //hide submit button
+    $('#submit_food').hide();
+
+      //enabel non_submit_food button
+        $('#non_submit_food').attr('disabled',false);
+        //show non_submit_food button
+        $('#non_submit_food').show();
+    //crusoer disabel
+    $('#non_submit_food').css('cursor','not-allowed');
+      
+        </script>";
 }
+
+    }
+
+    
 else
 {
     header("location:../index.php");
