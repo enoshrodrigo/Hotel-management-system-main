@@ -9,8 +9,8 @@ function ajaxToUpdateData(roomNumber,price,ac,tv,wifi,kitchen,fridge){
     console.log(kitchen);
     console.log(fridge);
     ppp = parseFloat(price);
-    if(ppp<=0){
-        alert("Please enter price");
+    if(ppp<=-1){
+        alert("Please enter valide price");
         window.location.href = "edit-rooms.php";
         
     }
