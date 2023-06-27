@@ -85,7 +85,7 @@ session_start();
                                             </div>
                                         <div class="form-group">
                                             <label for="staffemail">Employee Email</label>
-                                            <input type="emai;" class="form-control" id="staffemail" name="staffemail" value="'.$row['email'].'">
+                                            <input type="email" class="form-control" id="staffemail" name="staffemail" value="'.$row['email'].'">
                                             </div>
                                         <div class="form-group">
                                             <label for="staffdob">Employee Dob</label>
@@ -181,6 +181,29 @@ document.getElementById("staffmobile").addEventListener("input", function() {
                                                     document.getElementById("staffsubmit").disabled = true;
                                                 }
                                             });
+
+              //GETH THE first name and last name from input fields the names must be contaion only letters
+                                            document.getElementById("staffname").addEventListener("input", function() {
+                                                var name = document.getElementById("staffname").value;
+                                                var letters = /^[A-Za-z]+$/;
+                                                if(name.match(letters)){
+                                                    document.getElementById("staffsubmit").disabled = false;
+                                                }else{
+                                                    document.getElementById("staffsubmit").disabled = true;
+                                                }
+                                            });
+
+                                            document.getElementById("stafflname").addEventListener("input", function() {
+                                                var name = document.getElementById("stafflname").value;
+                                                var letters = /^[A-Za-z]+$/;
+                                                if(name.match(letters)){
+                                                    document.getElementById("staffsubmit").disabled = false;
+                                                }else{
+                                                    document.getElementById("staffsubmit").disabled = true;
+                                                }
+                                            });
+
+                                            
                                             </script>
 
 
