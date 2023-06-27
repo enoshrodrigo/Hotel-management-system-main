@@ -5,7 +5,7 @@ require_once('..\..\dbConnection\connect.php');
 header("Content-Type: application/json");
 if(isset($_POST['value'])){
   $value = $_POST['value'];
-  $sql = "SELECT * FROM roomdetail WHERE roomtype='$value' AND status=1";
+  $sql = "SELECT * FROM roomdetail WHERE roomtype='$value' AND status=1 AND price > 0";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $dependentOptions = array();
