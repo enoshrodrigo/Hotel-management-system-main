@@ -44,7 +44,7 @@ session_start();
             <div class="card shadow">
                 <div class="card-header py-3" id="addrecipe">
                     <p class="text-primary m-0 fw-bold" id="addrecipe">Recipes
-                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" style="float:right;" id="add_recipe">Add Recipes</a>
+                        <!-- <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" style="float:right;" id="add_recipe">Add Recipes</a> -->
                     <h1 id="demo"></h1>
                     </p>
                 </div>
@@ -58,6 +58,8 @@ session_start();
                                 <label for="recipeName">Recipe Name</label>
                                 <input type="text" name="recipeName" class="form-control" id="recipe_name" required>
                                 <div id="recipe_name_check"></div>
+                                <div id="recipe_name_valid"></div>
+
                             </div>
                             <?php
                             $sql = "SELECT * FROM food ";
@@ -208,9 +210,18 @@ session_start();
                         }
                     })
                         
-
-
- 
+//recipe name should be contain only letters if contain contain other character then it show the warning 
+                    document.getElementById("recipe_name").addEventListener("keyup", function() {
+                        var recipe_name = document.getElementById("recipe_name").value;
+                        var letters = /^[A-Za-z]+$/;
+                        if (recipe_name.match(letters)) {
+                            document.getElementById("recipe_name_valid").innerHTML = "";
+                        } else {
+                            document.getElementById("recipe_name_valid").innerHTML = "Recipe name should be contain only letters";
+                            document.getElementById("recipe_name_valid").style.color = "red";
+                        }
+                    })
+                       
                     </script>
 
                 </div>
