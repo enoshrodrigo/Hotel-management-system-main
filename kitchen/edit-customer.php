@@ -3,9 +3,12 @@
 <?php
 require_once('../dbConnection/connect.php');
 
-session_start()
-
-
+session_start();
+  if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'kitchen') {
+  
+    header('Location: ../login.html');
+  
+  }
 ?>
 
 <head>
@@ -31,11 +34,6 @@ session_start()
 <body id="page-top">
     <div id="wrapper">
         <?php
-        if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'kitchen')
-        {
-        
-            header('Location: ../login.html');
-        }
         include_once('sidebar/sidebar.php');
         include_once('navigation/nav.php');
 
@@ -60,7 +58,9 @@ session_start()
                         <div class="col-md-6">
 
                               <div id="formContainer" >
-                            <?php        if(isset($_GET['cid'])){
+                            <?php     
+                          
+                               if(isset($_GET['cid'])){
                                     $customerid = $_GET['cid'];
                                  $query = "SELECT * FROM customer where customerid = '$customerid'";
                                
@@ -91,7 +91,7 @@ session_start()
                                             </div>
                                         <div class="form-group">
                                             <label for="customeremail">Customer Dob</label>
-                                            <input type="date" class="form-control" max="'.date('Y-m-d', strtotime('-18 years')).'" min="1910-01-01" " id="customeremail" name="customerdob" value="'.$row['cdob'].'">
+                                            <input type="date" class="form-control" id="customeremail" name="customerdob" value="'.$row['cdob'].'">
                                             </div>
                                         <div class="form-group">
                                             <label for="customeremail">Customer Health</label>
@@ -141,22 +141,53 @@ session_start()
                                             showConfirmButton: false,
                                             timer: 1500
                                           })
-
-                                          
                                         </script>';
                                     }
                                 }
 ?>
-                                        <!-- <div class="alert alert-primary" role="alert">
-  This is a primary alert—check it out!
-</div> -->
-<!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div> -->
+ 
+<script>
+    //customer first name and last name must be contain only letters
+        document.getElementById("customername").addEventListener("input", function(evt) {
+            var self = this;
+            var invalidChars = /[^a-zA-Z]/;
+            if (invalidChars.test(self.value)) {
+                self.value = self.value.replace(invalidChars, "");
+            }
+        }, false);
+        document.getElementById("customerlname").addEventListener("input", function(evt) {
+            var self = this;
+            var invalidChars = /[^a-zA-Z]/;
+            if (invalidChars.test(self.value)) {
+                self.value = self.value.replace(invalidChars, "");
+            }
+        }, false);
 
+        //mobile number must be contain only  10 digits and start with 0
+
+        document.getElementById("customermobile").addEventListener("input", function(evt) {
+            var self = this;
+            var invalidChars = /[^0-9]/;
+            if (invalidChars.test(self.value)) {
+                self.value = self.value.replace(invalidChars, "");
+            }
+            if (self.value.length > 10) {
+                self.value = self.value.slice(0, 10);
+            }
+            //first digit must be 0
+            if (self.value.length == 1) {
+                if (self.value != 0) {
+                    self.value = "";
+                }
+            }
+            
+        }, false);
+
+       
+    
+
+
+    </script>
                                     </div>
 
                                 </form>
@@ -167,17 +198,7 @@ session_start()
                     </div>
 
                 </div>
-<script> //option to verify customer Mobile number  MOBILE SHOULD BE CONTAIN 10 DIGITS AND START WITH 0
 
-                                            document.getElementById("customermobile").addEventListener("input", function() {
-                                                var mobile = document.getElementById("customermobile").value;
-                                                if(mobile.length == 10 && mobile.charAt(0) == 0){
-                                                    document.getElementById("csubmit").disabled = false;
-                                                }else{
-                                                    document.getElementById("csubmit").disabled = true;
-                                                }
-                                            });
-                                            </script>
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
