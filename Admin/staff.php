@@ -175,6 +175,19 @@ session_start();
 
 
             <script>
+              document.getElementById("vanilaformfields1").addEventListener("input", function() {
+                var name = document.getElementById("vanilaformfields1").value;
+                if (!/^[a-zA-Z]*$/g.test(name)) {
+                  document.getElementById("vanilaformfields1").value = name.substring(0, name.length - 1);
+                }
+              });
+              document.getElementById("vanilaformfields2").addEventListener("input", function() {
+                var name = document.getElementById("vanilaformfields2").value;
+                if (!/^[a-zA-Z]*$/g.test(name)) {
+                  document.getElementById("vanilaformfields2").value = name.substring(0, name.length - 1);
+                }
+              });
+
               var bool = false;
               document.getElementById("enterstaff").addEventListener("click", function() {
                 document.getElementById("staffhide").style.display = "none";
