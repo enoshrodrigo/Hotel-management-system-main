@@ -18,7 +18,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
 <head>
 
 
-    </style>
+     
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -86,10 +86,10 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                                     Enter NIC number: <div><input type="text" name="nic" class="form-control" id="customernic" required>
                                         <div style="color: red;" id="customercheck"></div>
                                     </div>
-                                    Enter First Name: <div><input type="text" name="first_name" class="form-control" id="vanilaformfields" required>
-                                        Enter Last Name: <input type="text" name="last_name" class="form-control" id="vanilaformfields" required>
+                                    Enter First Name: <div><input type="text" name="first_name" class="form-control" id="first_name" required>
+                                        Enter Last Name: <input type="text" name="last_name" class="form-control" id="last_name" required>
                                         Enter Email: <input type="email" name="customer_email" class="form-control" required>
-                                        Enter Phone.No: <input type="tel" name="customer_mobile" class="form-control" required>
+                                        Enter Phone.No: <input type="tel" name="customer_mobile" id="cmobile" class="form-control" required>
                                         Enter DOB: <input type="date" name="customer_dob" class="form-control" max="<?php
                                         echo
                                         date('Y-m-d', strtotime('-18 years'));
@@ -254,16 +254,69 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
         </div>
 
 
- <script>       //option to verify customer Mobile number  MOBILE SHOULD BE CONTAIN 10 DIGITS AND START WITH 0
+ <script>       
+ 
+    //customer mobile number validation number only can contaion 10 numbers and start with 0
+    $(document).ready(function() {
+        $("#cmobile").on("input", function() {
+            var mob = $(this).val();
+            var filter = /^\d*(?:\.\d{1,2})?$/;
+            if (filter.test(mob)) {
+                if (mob.length == 10) {
+                    if (mob.charAt(0) == 0) {
+                        $("#cmobile").css("border", "2px solid green");
+                        $("#csubmit").prop('disabled', false);
+                    } else {
+                        $("#cmobile").css("border", "2px solid red");
+                        $("#csubmit").prop('disabled', true);
+                    }
+                } else {
+                    $("#cmobile").css("border", "2px solid red");
+                    $("#csubmit").prop('disabled', true);
+                }
+            } else {
+                $("#cmobile").css("border", "2px solid red");
+                $("#csubmit").prop('disabled', true);
+            }
+        });
+    });
 
-document.getElementById("customer_mobile").addEventListener("input", function() {
-    var mobile = document.getElementById("customer_mobile").value;
-    if(mobile.length == 10 && mobile.charAt(0) == 0){
-        document.getElementById("csubmit").disabled = false;
-    }else{
-        document.getElementById("csubmit").disabled = true;
-    }
-});
+    //first name and last name must be contain only letters
+    $(document).ready(function() {
+        $("#first_name").on("input", function() {
+            var name = $(this).val();
+            var filter = /^[a-zA-Z]*$/;
+            if (filter.test(name)) {
+                $("#first_name").css("border", "2px solid green");
+                $("#csubmit").prop('disabled', false);
+            } else {
+                $("#first_name").css("border", "2px solid red");
+                $("#csubmit").prop('disabled', true);
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        $("#last_name").on("input", function() {
+            var name = $(this).val();
+            var filter = /^[a-zA-Z]*$/;
+            if (filter.test(name)) {
+                $("#last_name").css("border", "2px solid green");
+                $("#csubmit").prop('disabled', false);
+            } else {
+                $("#last_name").css("border", "2px solid red");
+                $("#csubmit").prop('disabled', true);
+            }
+        });
+    });
+    
+
+
+
+
+ 
+
+
 
 </script>
 

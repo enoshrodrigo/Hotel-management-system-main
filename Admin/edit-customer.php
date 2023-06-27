@@ -145,16 +145,49 @@ session_start();
                                     }
                                 }
 ?>
-                                        <!-- <div class="alert alert-primary" role="alert">
-  This is a primary alert—check it out!
-</div> -->
-<!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div> -->
+ 
+<script>
+    //customer first name and last name must be contain only letters
+        document.getElementById("customername").addEventListener("input", function(evt) {
+            var self = this;
+            var invalidChars = /[^a-zA-Z]/;
+            if (invalidChars.test(self.value)) {
+                self.value = self.value.replace(invalidChars, "");
+            }
+        }, false);
+        document.getElementById("customerlname").addEventListener("input", function(evt) {
+            var self = this;
+            var invalidChars = /[^a-zA-Z]/;
+            if (invalidChars.test(self.value)) {
+                self.value = self.value.replace(invalidChars, "");
+            }
+        }, false);
 
+        //mobile number must be contain only  10 digits and start with 0
+
+        document.getElementById("customermobile").addEventListener("input", function(evt) {
+            var self = this;
+            var invalidChars = /[^0-9]/;
+            if (invalidChars.test(self.value)) {
+                self.value = self.value.replace(invalidChars, "");
+            }
+            if (self.value.length > 10) {
+                self.value = self.value.slice(0, 10);
+            }
+            //first digit must be 0
+            if (self.value.length == 1) {
+                if (self.value != 0) {
+                    self.value = "";
+                }
+            }
+            
+        }, false);
+
+       
+    
+
+
+    </script>
                                     </div>
 
                                 </form>
