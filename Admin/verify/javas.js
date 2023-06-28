@@ -56,13 +56,16 @@ var toggel=true;
 
                       }
                       else{
+                        //also id must be contain more than 9 characters
+                        
+
                         document.getElementById('csubmit').style.backgroundColor="#6662e0";
                         document.getElementById('csubmit').disabled=false;
                       document.getElementById("customercheck").innerHTML ='';
-
+                        
                       }
                      
-                    
+                   
                       // Check if 'V' is in the middle of the ID
                       if (id.indexOf('V') !== id.length - 1) {
                         document.getElementById('csubmit').style.backgroundColor="red";
