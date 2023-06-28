@@ -151,7 +151,7 @@ session_start();
                 </div>
                 Enter First Name: <div><input type="text" name="first_name" class="form-control" id="vanilaformfields1" required>
                   Enter Last Name: <input type="text" name="last_name" class="form-control" id="vanilaformfields2" required>
-                  Enter Email: <input type="email" name="staff_email" class="form-control" required>
+                  Enter Email: <input type="email" name="staff_email" class="form-control" id="staff_email" required>
                   Enter Phone.No: <input type="tel" name="staff_mobile" class="form-control" id="staffmobile" required>
                   Enter DOB: <input type="date" name="dob" class="form-control" max="<?php
                     echo date('Y-m-d', strtotime('-18 years'));
@@ -268,6 +268,23 @@ session_start();
                 xhttp.send("value=" + inputValue);
               }
               
+              //email mustbe contain @ and .  and before the @ mustbe contain 3 characters or more
+              document.getElementById("staff_email").addEventListener("input", function() {
+                                                var email = document.getElementById("staff_email").value;
+
+                                                if(email.includes('@') && email.includes('.')){
+                                          
+                                                    document.getElementById("addstaff").disabled = false;
+                                                }else{
+                                                    document.getElementById("addstaff").disabled = true;
+                                                }
+                                            });
+            
+
+              
+             
+                                            </script>
+
             </script>
           </div>
         </div>

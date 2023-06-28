@@ -163,15 +163,19 @@ session_start();
                                 }
                             }
 ?>
-                                        <!-- <div class="alert alert-primary" role="alert">
-  This is a primary alert—check it out!
-</div> -->
-<!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div> --><script> //option to verify customer Mobile number  MOBILE SHOULD BE CONTAIN 10 DIGITS AND START WITH 0
+                                        <script> 
+ //email mustbe contain @ and .  
+ document.getElementById("staffemail").addEventListener("input", function() {
+                                                var email = document.getElementById("staffemail").value;
+
+                                                if(email.includes('@') && email.includes('.')){
+                                          
+                                                    document.getElementById("staffsubmit").disabled = false;
+                                                }else{
+                                                    document.getElementById("staffsubmit").disabled = true;
+                                                }
+                                            });
+//option to verify customer Mobile number  MOBILE SHOULD BE CONTAIN 10 DIGITS AND START WITH 0
 
 document.getElementById("staffmobile").addEventListener("input", function() {
                                                 var mobile = document.getElementById("staffmobile").value;
