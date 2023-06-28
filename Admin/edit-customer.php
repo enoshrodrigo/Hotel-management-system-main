@@ -87,11 +87,11 @@ session_start();
                                             </div>
                                         <div class="form-group">
                                             <label for="customeremail">Customer Email</label>
-                                            <input type="emai;" class="form-control" id="customeremail" name="customeremail" value="'.$row['cemail'].'">
+                                            <input type="email;" class="form-control" id="customeremail" name="customeremail" value="'.$row['cemail'].'">
                                             </div>
                                         <div class="form-group">
                                             <label for="customeremail">Customer Dob</label>
-                                            <input type="date" class="form-control" id="customeremail" name="customerdob" value="'.$row['cdob'].'">
+                                            <input type="date" class="form-control" id="customerDob" name="customerdob" value="'.$row['cdob'].'">
                                             </div>
                                         <div class="form-group">
                                             <label for="customeremail">Customer Health</label>
@@ -147,6 +147,18 @@ session_start();
 ?>
  
 <script>
+    //email mustbe contain @ and .  
+ document.getElementById("customeremail").addEventListener("input", function() {
+                                                var email = document.getElementById("customeremail").value;
+
+                                                if(email.includes('@') && email.includes('.')){
+                                          
+                                                    document.getElementById("csubmit").disabled = false;
+                                                }else{
+                                                    document.getElementById("csubmit").disabled = true;
+                                                }
+                                            });
+
     //customer first name and last name must be contain only letters
         document.getElementById("customername").addEventListener("input", function(evt) {
             var self = this;

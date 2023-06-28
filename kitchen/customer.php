@@ -88,7 +88,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'kitchen') {
                                     </div>
                                     Enter First Name: <div><input type="text" name="first_name" class="form-control" id="first_name" required>
                                         Enter Last Name: <input type="text" name="last_name" class="form-control" id="last_name" required>
-                                        Enter Email: <input type="email" name="customer_email" class="form-control" required>
+                                        Enter Email: <input type="email" name="customer_email" class="form-control" id="customer_email" required>
                                         Enter Phone.No: <input type="tel" name="customer_mobile" id="cmobile" class="form-control" required>
                                         Enter DOB: <input type="date" name="customer_dob" class="form-control" max="<?php
                                         echo
@@ -312,8 +312,36 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'kitchen') {
     
 
 
+    $(document).ready(function() {
+        $("#customernic").on("input", function() {
+            var id = $(this).val();
+            var filter = /^[0-9]*$/;
+            if (filter.test(id)) {
+                if (id.length >= 9) {
+                    $("#customernic").css("border", "2px solid green");
+                    $("#csubmit").prop('disabled', false);
+                } else {
+                    $("#customernic").css("border", "2px solid red");
+                    $("#csubmit").prop('disabled', true);
+                }
+            } else {
+                 
+            }
+        });
+    });
 
+    //verify customer email
+  //email mustbe contain @ and .  and before the @ mustbe contain 3 characters or more
+  document.getElementById("customer_email").addEventListener("input", function() {
+                                                var email = document.getElementById("customer_email").value;
 
+                                                if(email.includes('@') && email.includes('.')){
+                                          
+                                                    document.getElementById("csubmit").disabled = false;
+                                                }else{
+                                                    document.getElementById("csubmit").disabled = true;
+                                                }
+                                            });
  
 
 
