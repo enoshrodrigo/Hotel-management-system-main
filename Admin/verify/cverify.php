@@ -15,17 +15,22 @@ try {
    $cstmt = $cconn->prepare("SELECT customerid  FROM customer WHERE customerid = :value"); 
    // $cvalue = intval($cvalue);
    $cstmt->bindParam(':value', $cvalue);
-   $cstmt->execute();
+   if(!$cstmt->execute()){
+      echo "Error:Duplicate entry
+      " ;
+   }else{
 
    if($cstmt->rowCount() > 0){
+
       echo "already exists user.";
     
    }else{
-    //   echo "Value does not exist in the database.";
+      echo "Value does not exist in the database.";
    }
-
+   }
 }
-catch(PDOException $e) {
+catch(PDOException $e)
+{
    echo "Error: " . $e->getMessage();
 }
 $cconn = null;

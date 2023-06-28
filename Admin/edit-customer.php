@@ -14,7 +14,7 @@ session_start();
 <head>
 
 
-    </style>
+  
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -27,8 +27,7 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
 
-
-    <!-- <link rel="stylesheet" href="sb-admin.css"> -->
+ 
 </head>
 
 <body id="page-top">
@@ -72,26 +71,29 @@ session_start();
                                         <div class="form-group">
                                             <label for="customerid">Customer ID</label>
                                             <input type="text" class="form-control" id="customerid" name="customerid" value="'.$row['customerid'].'" readonly>
+                                            
                                             </div>
                                         <div class="form-group">
                                             <label for="customername">Customer Name</label>
-                                            <input type="text" class="form-control" id="customername" name="customername" value="'.$row['cfname'].'">
+                                            <input type="text" class="form-control" id="customername" name="customername" value="'.$row['cfname'].'" required>
                                             </div>
                                         <div class="form-group">
                                             <label for="customeremail">Customer Lname</label>
-                                            <input type="text" class="form-control" id="customerlname" name="customerlname" value="'.$row['clname'].'">
+                                            <input type="text" class="form-control" id="customerlname" name="customerlname" value="'.$row['clname'].'"required>
                                             </div>
                                             <div class="form-group">
                                             <label for="customeremail">Customer Mobile</label>
-                                            <input type="text" class="form-control" id="customermobile" name="customermobile" value="'.$row['cmobile'].'">
+                                            <input type="text" class="form-control" id="customermobile" name="customermobile" value="'.$row['cmobile'].'"required>
+                                            <div id="Mobilenumberwarning" style="color:red;" ></div>
                                             </div>
                                         <div class="form-group">
                                             <label for="customeremail">Customer Email</label>
-                                            <input type="email;" class="form-control" id="customeremail" name="customeremail" value="'.$row['cemail'].'">
+                                            <input type="email" class="form-control" id="customeremail" name="customeremail" value="'.$row['cemail'].'"required>
+                                            <div id="Emailwarning" style="color:red;" ></div>
                                             </div>
                                         <div class="form-group">
                                             <label for="customeremail">Customer Dob</label>
-                                            <input type="date" class="form-control" id="customerDob" name="customerdob" value="'.$row['cdob'].'">
+                                            <input type="date" class="form-control" id="customerDob" name="customerdob" value="'.$row['cdob'].'"required>
                                             </div>
                                         <div class="form-group">
                                             <label for="customeremail">Customer Health</label>
@@ -147,53 +149,72 @@ session_start();
 ?>
  
 <script>
-    //email mustbe contain @ and .  
- document.getElementById("customeremail").addEventListener("input", function() {
-                                                var email = document.getElementById("customeremail").value;
-
-                                                if(email.includes('@') && email.includes('.')){
-                                          
-                                                    document.getElementById("csubmit").disabled = false;
-                                                }else{
-                                                    document.getElementById("csubmit").disabled = true;
-                                                }
-                                            });
-
-    //customer first name and last name must be contain only letters
-        document.getElementById("customername").addEventListener("input", function(evt) {
-            var self = this;
-            var invalidChars = /[^a-zA-Z]/;
-            if (invalidChars.test(self.value)) {
-                self.value = self.value.replace(invalidChars, "");
-            }
-        }, false);
-        document.getElementById("customerlname").addEventListener("input", function(evt) {
-            var self = this;
-            var invalidChars = /[^a-zA-Z]/;
-            if (invalidChars.test(self.value)) {
-                self.value = self.value.replace(invalidChars, "");
-            }
-        }, false);
-
-        //mobile number must be contain only  10 digits and start with 0
-
-        document.getElementById("customermobile").addEventListener("input", function(evt) {
-            var self = this;
-            var invalidChars = /[^0-9]/;
-            if (invalidChars.test(self.value)) {
-                self.value = self.value.replace(invalidChars, "");
-            }
-            if (self.value.length > 10) {
-                self.value = self.value.slice(0, 10);
-            }
-            //first digit must be 0
-            if (self.value.length == 1) {
-                if (self.value != 0) {
-                    self.value = "";
-                }
-            }
+ 
+    //verify input fields
+    document.getElementById("page-top").addEventListener("mousemove", function() {
             
-        }, false);
+            //verify customer email
+            //email mustbe contain @ and .  and before the @ mustbe contain 3 characters or more
+    
+            var email = document.getElementById("customeremail").value;
+    
+            if (email.includes('@') && email.includes('.')) {
+                email_verified = false;
+                document.getElementById("csubmit").disabled = false;
+                document.getElementById("Emailwarning").innerHTML = "";
+
+            } else {
+                email_verified = true;
+                document.getElementById("Emailwarning").innerHTML = "Email must contain @ and .";
+                document.getElementById("csubmit").disabled = true;
+            }
+            //customer mobile number validation number only can contaion 10 numbers and start with 0
+            var mob = document.getElementById("customermobile").value;
+            var filter = /^\d*(?:\.\d{1,2})?$/;
+            if (filter.test(mob)) {
+                if (mob.length == 10) {
+                    if (mob.charAt(0) == 0) {
+                        document.getElementById("Mobilenumberwarning").innerHTML = "";
+                        mob_verified = false;
+                        document.getElementById("csubmit").disabled = false;
+                    } else {
+                        document.getElementById("Mobilenumberwarning").innerHTML = "Mobile number must start with 0";
+                        mob_verified = true;
+                        document.getElementById("csubmit").disabled = true;
+                    }
+                } else {
+                    document.getElementById("Mobilenumberwarning").innerHTML = "Mobile number must contain 10 numbers";
+                    mob_verified = true;
+                    document.getElementById("csubmit").disabled = true;
+                }
+            } else {
+                document.getElementById("Mobilenumberwarning").innerHTML = "Mobile number must contain numbers only";
+                mob_verified = true;
+                document.getElementById("csubmit").disabled = true;
+            }
+     
+            if( email_verified || mob_verified){
+                document.getElementById("csubmit").disabled = true;
+            }else{
+                document.getElementById("csubmit").disabled = false;
+            }
+
+    });
+    //first name and last name must be contain only letters
+    document.getElementById("customername").addEventListener("input", function() {
+        var name = document.getElementById("customername").value;
+        if (!/^[a-zA-Z]*$/g.test(name)) {
+            document.getElementById("customername").value = name.substring(0, name.length - 1);
+        }
+    }); 
+    document.getElementById("customerlname").addEventListener("input", function() {
+        var name = document.getElementById("customerlname").value;
+        if (!/^[a-zA-Z]*$/g.test(name)) {
+            document.getElementById("customerlname").value = name.substring(0, name.length - 1);
+        }
+    });
+
+
 
        
     

@@ -73,31 +73,31 @@ session_start();
                                             </div>
                                         <div class="form-group">
                                             <label for="stafffname">Employee Name</label>
-                                            <input type="text" class="form-control" id="staffname" name="staffname" value="'.$row['f_name'].'">
+                                            <input type="text" class="form-control" id="staffname" name="staffname" value="'.$row['f_name'].'" required>
                                             </div>
                                         <div class="form-group">
                                             <label for="stafflname">Employee Lname</label>
-                                            <input type="text" class="form-control" id="stafflname" name="stafflname" value="'.$row['l_name'].'">
+                                            <input type="text" class="form-control" id="stafflname" name="stafflname" value="'.$row['l_name'].'" required>
                                             </div>
                                             <div class="form-group">
                                             <label for="staffmobile">Employee Mobile</label>
-                                            <input type="text" class="form-control" id="staffmobile" name="staffmobile" value="'.$row['mobile'].'">
+                                            <input type="text" class="form-control" id="staffmobile" name="staffmobile" value="'.$row['mobile'].'" required>
                                             </div>
                                         <div class="form-group">
                                             <label for="staffemail">Employee Email</label>
-                                            <input type="email" class="form-control" id="staffemail" name="staffemail" value="'.$row['email'].'">
+                                            <input type="email" class="form-control" id="staffemail" name="staffemail" value="'.$row['email'].'" required>
                                             </div>
                                         <div class="form-group">
                                             <label for="staffdob">Employee Dob</label>
-                                            <input type="date" class="form-control" id="staffemail" name="staffdob" value="'.$row['dob'].'">
+                                            <input type="date" class="form-control" id="staffemail" name="staffdob" value="'.$row['dob'].'" required>
                                             </div>
                                         <div class="form-group">
                                             <label for="staffsalary">Employee Salary</label>
-                                            <input type="number" step="any" class="form-control" id="staffsalary" name="staffsalary" value="'.$row['salary'].'">
+                                            <input type="number" step="any" class="form-control" id="staffsalary" name="staffsalary" value="'.$row['salary'].'" required>
                                             </div>
                                         <div class="form-group">
                                             <label for="staffworkyear">Employee Salary</label>
-                                            <input type="number" placeholder="YYYY" min="2000" max="'.date("Y").'" class="form-control" id="staffworkyear" name="staffworkyear" value="'.$row['workyear'].'">
+                                            <input type="number" placeholder="YYYY" min="2000" max="'.date("Y").'" class="form-control" id="staffworkyear" name="staffworkyear" value="'.$row['workyear'].'" required>
                                             </div>
                                         <div class="form-group">
                                             <label for="staffdescription">Employee Description</label>

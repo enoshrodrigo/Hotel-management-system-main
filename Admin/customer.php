@@ -5,20 +5,19 @@ require_once('../dbConnection/connect.php');
 session_start();
 if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
 
-  header('Location: ../login.html');
-
+    header('Location: ../login.html');
 }
 
 
 // Check access level for this page
- 
+
 
 ?>
 
 <head>
 
 
-     
+
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -31,7 +30,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    
+
 
     <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>   -->
 
@@ -70,10 +69,10 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                 <h3 class="text-dark mb-4">Customers</h3>
             </div>
             <div class="card shadow">
-                <div class="card-header py-3" id="addcustomer"> 
+                <div class="card-header py-3" id="addcustomer">
                     <p class="text-primary m-0 fw-bold" id="addcustomer">customer Info
                         <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" style="float:right;" id="addcustomer">Add customer</a>
-                        <h1 id="demo"></h1>
+                    <h1 id="demo"></h1>
                     </p>
                 </div>
                 <div class="card-body">
@@ -85,15 +84,19 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                                 <form method="POST">
                                     Enter NIC number: <div><input type="text" name="nic" class="form-control" id="customernic" required>
                                         <div style="color: red;" id="customercheck"></div>
+                                        <div style="color: red;" id="customernic"></div>
+
                                     </div>
                                     Enter First Name: <div><input type="text" name="first_name" class="form-control" id="first_name" required>
                                         Enter Last Name: <input type="text" name="last_name" class="form-control" id="last_name" required>
                                         Enter Email: <input type="email" name="customer_email" id="customer_email" class="form-control" required>
+                                        <div style="color: red;" id="customer_email_warning"></div>
                                         Enter Phone.No: <input type="tel" name="customer_mobile" id="cmobile" class="form-control" required>
+                                        <div style="color: red;" id="cmobile_warning"></div>
                                         Enter DOB: <input type="date" name="customer_dob" class="form-control" max="<?php
-                                        echo
-                                        date('Y-m-d', strtotime('-18 years'));
-                                        ?>" required>
+                                                                                                                    echo
+                                                                                                                    date('Y-m-d', strtotime('-18 years'));
+                                                                                                                    ?>" required>
                                         Health Conditions: <input type="text" name="customer_health" class="form-control form-control-lg">
                                         <!-- Enter Enter year: <input type="year" name="customer_date" class="form-control" required> -->
                                         Enter Descripton: <input type="text" name="customer_description" class="form-control form-control-lg">
@@ -102,7 +105,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                                             <input type="reset" name="Reset" class="btn btn-primary">
                                             <input type="submit" name="submit" class="btn btn-primary" id="csubmit" style="float:right; ">
                                         </div>
-<!-- irc technology -->
+                                        <!-- irc technology -->
                                 </form>
                             </div>
                         </div>
@@ -112,7 +115,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                     <div class="table-responsive">
                         <div class="d-flex justify-content-between mb-3">
                             <div class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
                             </div>
 
                         </div>
@@ -150,20 +153,20 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                                     $co++;
                                     echo '<tr>';
                                     echo '<td>' . $row['customerid'] . '</td>';
-                                    echo '<td id="c'.$row['customerid'].'">' . $row['cfname'] . " " . $row['clname'] . '</td>';
+                                    echo '<td id="c' . $row['customerid'] . '">' . $row['cfname'] . " " . $row['clname'] . '</td>';
                                     echo '<td>' . $row['cmobile'] . " </td><td> " . $row['cdob'] . '</td>';
                                     echo '<td>' . $row['health'] . '</td>';
-                                    echo '<td><a href="edit-customer.php?cid=' . $row['customerid'] . '" class="btn btn-primary btn-sm" style="margin-right:8px;">Edit</a>'; 
+                                    echo '<td><a href="edit-customer.php?cid=' . $row['customerid'] . '" class="btn btn-primary btn-sm" style="margin-right:8px;">Edit</a>';
                                     echo '<a href="#" class="btn btn-danger btn-sm" onclick="deleteCustomer(' . $row['cid'] . ')">Delete</a></td>';
                                     echo '</tr>';
                                 }
                                 if (isset($_GET['delid'])) {
-                                    try{
-                                    $delid =  $_GET['delid'];
-                                    $delquery = "DELETE FROM customer WHERE cid = $delid";
-                                    $delresult = $conn->query($delquery);
-                                    if ($delresult) {
-                                        echo "<script>
+                                    try {
+                                        $delid =  $_GET['delid'];
+                                        $delquery = "DELETE FROM customer WHERE cid = $delid";
+                                        $delresult = $conn->query($delquery);
+                                        if ($delresult) {
+                                            echo "<script>
                                         Swal.fire({
                                             icon: 'success',
                                             title: 'Deleted!',
@@ -174,9 +177,9 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                                                 window.location.href='customer.php';
                                             })
                                         </script>";
-                                    } else {
-                                        //have data abouth the customer
-                                        echo "<script>
+                                        } else {
+                                            //have data abouth the customer
+                                            echo "<script>
                                          Swal.fire({
                                             icon: 'error',
                                             title: 'Oops...',
@@ -187,10 +190,9 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                                                 window.location.href='customer.php';
                                             })
                                         </script>";
-                                    }
-                                }
-                                catch(Exception $e){
-                                   echo"<script> 
+                                        }
+                                    } catch (Exception $e) {
+                                        echo "<script> 
                                       Swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
@@ -201,9 +203,9 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                                             window.location.href='customer.php';
                                         });;
                                 
-                                  </script>";  
+                                  </script>";
+                                    }
                                 }
-                            }
 
                                 ?>
                                 <script>
@@ -232,7 +234,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
                                             });
                                         });
                                         // Sort functionality
-                                      
+
                                     });
                                 </script>
                             </tbody>
@@ -254,105 +256,120 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
         </div>
 
 
- <script>       
- //verify customer email
-  //email mustbe contain @ and .  and before the @ mustbe contain 3 characters or more
-  document.getElementById("customer_email").addEventListener("input", function() {
-                                                var email = document.getElementById("customer_email").value;
+        <script>
+            //customer mobile number validation number only can contaion 10 numbers and start with 0
+            // $(document).ready(function() {
+            //     $("#cmobile").on("input", function() {
+            //         var mob = $(this).val();
+            //         var filter = /^\d*(?:\.\d{1,2})?$/;
+            //         if (filter.test(mob)) {
+            //             if (mob.length == 10) {
+            //                 if (mob.charAt(0) == 0) {
+            //                     $("#cmobile").css("border", "2px solid green");
+            //                     $("#csubmit").prop('disabled', false);
+            //                 } else {
+            //                     $("#cmobile").css("border", "2px solid red");
+            //                     $("#csubmit").prop('disabled', true);
+            //                 }
+            //             } else {
+            //                 $("#cmobile").css("border", "2px solid red");
+            //                 $("#csubmit").prop('disabled', true);
+            //             }
+            //         } else {
+            //             $("#cmobile").css("border", "2px solid red");
+            //             $("#csubmit").prop('disabled', true);
+            //         }
+            //     });
+            // });
+            document.getElementById("page-top").addEventListener("mousemove", function() {
 
-                                                if(email.includes('@') && email.includes('.')){
-                                          
-                                                    document.getElementById("csubmit").disabled = false;
-                                                }else{
-                                                    document.getElementById("csubmit").disabled = true;
-                                                }
-                                            });
+                //verify customer email
+                //email mustbe contain @ and .  and before the @ mustbe contain 3 characters or more
 
- 
+                var email = document.getElementById("customer_email").value;
 
-    //customer mobile number validation number only can contaion 10 numbers and start with 0
-    $(document).ready(function() {
-        $("#cmobile").on("input", function() {
-            var mob = $(this).val();
-            var filter = /^\d*(?:\.\d{1,2})?$/;
-            if (filter.test(mob)) {
-                if (mob.length == 10) {
-                    if (mob.charAt(0) == 0) {
-                        $("#cmobile").css("border", "2px solid green");
-                        $("#csubmit").prop('disabled', false);
+                if (email.includes('@') && email.includes('.')) {
+                    document.getElementById("customer_email_warning").innerHTML = '';
+                    email_verified = false;
+                    document.getElementById("csubmit").disabled = false;
+                } else {
+                    document.getElementById("customer_email_warning").innerHTML = 'invalid email';
+                    email_verified = true;
+                    document.getElementById("csubmit").disabled = true;
+                }
+                //customer mobile number validation number only can contaion 10 numbers and start with 0
+                var mob = document.getElementById("cmobile").value;
+                var filter = /^\d*(?:\.\d{1,2})?$/;
+                if (filter.test(mob)) {
+                    if (mob.length == 10) {
+                        if (mob.charAt(0) == 0) {
+                            document.getElementById("cmobile_warning").innerHTML = '';
+                            mob_verified = false;
+                            document.getElementById("csubmit").disabled = false;
+                        } else {
+                            document.getElementById("cmobile_warning").innerHTML = 'mobile number should be start with 0';
+                            mob_verified = true;
+                            document.getElementById("csubmit").disabled = true;
+                        }
                     } else {
-                        $("#cmobile").css("border", "2px solid red");
-                        $("#csubmit").prop('disabled', true);
+                        document.getElementById("cmobile_warning").innerHTML = 'mobile number should be 10 digits';
+                        mob_verified = true;
+                        document.getElementById("csubmit").disabled = true;
                     }
                 } else {
-                    $("#cmobile").css("border", "2px solid red");
-                    $("#csubmit").prop('disabled', true);
+                    document.getElementById("cmobile_warning").innerHTML = 'mobile number should be 10 digits';
+                    mob_verified = true;
+                    document.getElementById("csubmit").disabled = true;
                 }
-            } else {
-                $("#cmobile").css("border", "2px solid red");
-                $("#csubmit").prop('disabled', true);
-            }
-        });
-    });
-
-    //first name and last name must be contain only letters
-    $(document).ready(function() {
-        $("#first_name").on("input", function() {
-            var name = $(this).val();
-            var filter = /^[a-zA-Z]*$/;
-            if (filter.test(name)) {
-                $("#first_name").css("border", "2px solid green");
-                $("#csubmit").prop('disabled', false);
-            } else {
-                $("#first_name").css("border", "2px solid red");
-                $("#csubmit").prop('disabled', true);
-            }
-        });
-    });
-
-    $(document).ready(function() {
-        $("#last_name").on("input", function() {
-            var name = $(this).val();
-            var filter = /^[a-zA-Z]*$/;
-            if (filter.test(name)) {
-                $("#last_name").css("border", "2px solid green");
-                $("#csubmit").prop('disabled', false);
-            } else {
-                $("#last_name").css("border", "2px solid red");
-                $("#csubmit").prop('disabled', true);
-            }
-        });
-    });
-    //id must be contain more than 9 characters if not show the waring
-    $(document).ready(function() {
-        $("#customernic").on("input", function() {
-            var id = $(this).val();
-            var filter = /^[0-9]*$/;
-            if (filter.test(id)) {
-                if (id.length >= 9) {
-                    // $("#customernic").css("border", "2px solid green");
-                    $("#csubmit").prop('disabled', false);
+                //id must be contain more than 10 digits and it can be contain V at the end of the nic but its not mandotary
+                var nic = document.getElementById("customernic").value;
+                if (nic.length >= 10) {
+                    if (/^\d+(V?)$/.test(nic)) {
+                        nic_verified = false;
+                        document.getElementById("csubmit").disabled = false;
+                    } else {
+                        nic_verified = true;
+                        document.getElementById("customernic").innerHTML = 'invalid nic';
+                        document.getElementById("csubmit").disabled = true;
+                    }
                 } else {
-                    $("#customernic").css("border", "2px solid red");
-                    $("#csubmit").prop('disabled', true);
+                    nic_verified = true;
+                    document.getElementById("customernic").innerHTML = 'nic should be more than 10 digits';
+                    document.getElementById("csubmit").disabled = true;
                 }
-            } else {
-                 
-            }
-        });
-    });
+
+
+
+                if (email_verified || mob_verified || nic_verified) {
+                    document.getElementById("csubmit").disabled = true;
+                } else {
+                    document.getElementById("csubmit").disabled = false;
+                }
 
 
 
 
 
+            });
 
 
- 
 
 
-
-</script>
+            //first name and last name must be contain only letters
+            //   });
+            document.getElementById("first_name").addEventListener("input", function() {
+                var name = document.getElementById("first_name").value;
+                if (!/^[a-zA-Z]*$/g.test(name)) {
+                    document.getElementById("first_name").value = name.substring(0, name.length - 1);
+                }
+            });
+            document.getElementById("last_name").addEventListener("input", function() {
+                var name = document.getElementById("last_name").value;
+                if (!/^[a-zA-Z]*$/g.test(name)) {
+                    document.getElementById("last_name").value = name.substring(0, name.length - 1);
+                }
+            });
+        </script>
 
 
     </div>
@@ -368,7 +385,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
     <script src="../assets/js/theme.js"></script>
     <script src="../assets/js/ajax.js"></script>
 
-    <script src="./verify/javas.js"></script>     <!-- verify customer form -->
+    <script src="./verify/javas.js"></script> <!-- verify customer form -->
 
 
     <!-- ---------------------- -->
