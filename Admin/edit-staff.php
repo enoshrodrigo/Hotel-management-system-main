@@ -215,8 +215,22 @@ document.getElementById("page-top").addEventListener("mousemove", function() {
                                                     document.getElementById("staffsubmit").disabled = true;
                                                 }
                                             });
+
+                        //first name 
+                        document.getElementById("page-top").addEventListener("mousemove", function() {
+                                                var name = document.getElementById("staffname").value;
+                                                var letters = /^[A-Za-z]+$/;
+                                                if(name.match(letters)){
+                                                    name_verifyFirst=false;
+                                                    document.getElementById("staffsubmit").disabled = false;
+                                                }else{
+                                                    name_verify=true;
+                                                    document.getElementById("staffsubmit").disabled = true;
+                                                }
+                                            });
+
                                             document.getElementById("page-top").addEventListener("mousemove", function() {          
-                                    if(email_verify==true || mobile_verify==true || name_verify==true){
+                                    if(email_verify==true || mobile_verify==true || name_verify==true || name_verifyFirst==true){
                                         document.getElementById("staffsubmit").disabled = true;
                                     }else{
                                         document.getElementById("staffsubmit").disabled = false;
