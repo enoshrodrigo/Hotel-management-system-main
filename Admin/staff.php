@@ -3,11 +3,10 @@
 <?php
 require_once('../dbConnection/connect.php');
 session_start();
-  if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
-  
-    header('Location: ../login.html');
-  
-  }
+if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
+
+  header('Location: ../login.html');
+}
 
 
 ?>
@@ -62,17 +61,17 @@ session_start();
     }
   </style>
 
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Staff - Admin</title>
-    <!-- <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-add.min.css"> -->
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="assets/bootstrap/css/vanilacss.css"> -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
-    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Staff - Admin</title>
+  <!-- <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-add.min.css"> -->
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="assets/bootstrap/css/vanilacss.css"> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+  <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 
   <!-- <link rel="stylesheet" href="sb-admin.css"> -->
@@ -95,9 +94,9 @@ session_start();
     include_once('sidebar/sidebar.php');
     include_once('navigation/nav.php');
 
- 
+
     // Check access level for this page
-   
+
 
     ?>
     <!-- ---------------------- -->
@@ -139,7 +138,7 @@ session_start();
                   // echo "<script>confirm('Staff Added Successfully')</script>";
                   echo "<script>window.location.href='staff.php'</script>";
                 } else {
-                  echo "Staff Not Added";
+                  echo "<script>confirm('Staff Added Failed')</script>";
                 }
               }
               ?>
@@ -147,18 +146,26 @@ session_start();
               <form method="POST">
                 Enter NIC number: <div><input type="text" name="nic" class="form-control" id="vanilaformfields" required>
                   <div style="color: red;" id="ddd"></div>
+                  <div style="color: red;" id="IdValid"></div>
                   <div style="color: red;" id="idSize"></div>
                 </div>
                 Enter First Name: <div><input type="text" name="first_name" class="form-control" id="vanilaformfields1" required>
-                  Enter Last Name: <input type="text" name="last_name" class="form-control" id="vanilaformfields2" required>
-                  Enter Email: <input type="email" name="staff_email" class="form-control" id="staff_email" required>
-                  Enter Phone.No: <input type="tel" name="staff_mobile" class="form-control" id="staffmobile" required>
-                  Enter DOB: <input type="date" name="dob" class="form-control" max="<?php
-                    echo date('Y-m-d', strtotime('-18 years'));
+                <div style="color: red;" id="firstname"></div>
 
-                  ?>" required>
+                  Enter Last Name: <input type="text" name="last_name" class="form-control" id="vanilaformfields2" required>
+                  <div style="color: red;" id="lastname"></div>
+
+                  Enter Email: <input type="email" name="staff_email" class="form-control" id="staff_email" required>
+                  <div style="color: red;" id="email"></div>
+
+                  Enter Phone.No: <input type="tel" name="staff_mobile" class="form-control" id="staffmobile" required>
+                  <div style="color: red;" id="mobile"></div>
+                  Enter DOB: <input type="date" name="dob" class="form-control" max="<?php
+                                                                                      echo date('Y-m-d', strtotime('-18 years'));
+
+                                                                                      ?>" required>
                   Enter salary: <input type="number" step='any' name="salary" class="form-control" required>
-                  Enter Employe registered year: <input type="number" min='2000' max='<?php echo date('Y') ?>' name="date" class="form-control"    required>
+                  Enter Employe registered year: <input type="number" min='2000' max='<?php echo date('Y') ?>' name="date" class="form-control" required>
                   <!-- Enter Role: <input type="text" name="position" class="form-control" required> -->
                   Enter Descripton: <input type="text" name="description" class="form-control">
                   <br>
@@ -203,19 +210,19 @@ session_start();
               document.getElementById("vanilaformfields").addEventListener("input", function() {
                 event.preventDefault();
                 var inputValue = document.getElementById("vanilaformfields").value;
-               if(inputValue.length <10){
-                  document.getElementById("idSize").innerHTML ="Id length must be more than 10 characters";  
+                if (inputValue.length < 10) {
+                  document.getElementById("idSize").innerHTML = "Id length must be more than 10 characters";
                   document.getElementById('addstaff').style.backgroundColor = "red";
-                  document.getElementById('addstaff').disabled = false;           
-                  }else{
-                    document.getElementById("idSize").innerHTML ="";             
-                  }
+                  document.getElementById('addstaff').disabled = false;
+                } else {
+                  document.getElementById("idSize").innerHTML = "";
+                }
 
                 checkInDB(inputValue);
 
               });
 
-        
+
 
               function checkInDB(inputValue) {
                 // event.preventDefault();
@@ -226,35 +233,34 @@ session_start();
                     document.getElementById('addstaff').disabled = true;
                   } else {
 
-                    document.getElementById("ddd").innerHTML ='';
+                    document.getElementById("ddd").innerHTML = '';
 
-                  
+
                     if (!/^\d+(V?)$/.test(inputValue)) {
-                     
 
-                     document.getElementById('addstaff').style.backgroundColor="red";
-                     document.getElementById('addstaff').disabled=true;
-                   document.getElementById("ddd").innerHTML ='Invalid NIC';
 
-                   }
-                   else{
-                     document.getElementById('addstaff').style.backgroundColor="#6662e0";
-                     document.getElementById('addstaff').disabled=false;
-                   document.getElementById("ddd").innerHTML ='';
+                      document.getElementById('addstaff').style.backgroundColor = "red";
+                      document.getElementById('addstaff').disabled = true;
+                      document.getElementById("IdValid").innerHTML = 'Invalid NIC';
 
-                   }
-                  
-                 
-                   // Check if 'V' is in the middle of the ID
-                   if (id.indexOf('V') !== id.length - 1) {
-                     document.getElementById('addstaff').style.backgroundColor="red";
-                     document.getElementById('addstaff').disabled=true;
-                   document.getElementById("ddd").innerHTML ='Invalid NIC';
-                   } else{
-                     document.getElementById('addstaff').style.backgroundColor="#6662e0";
-                     document.getElementById('addstaff').disabled=false;
-                   document.getElementById("ddd").innerHTML ='';
-                   }
+                    } else {
+                      document.getElementById('addstaff').style.backgroundColor = "#6662e0";
+                      document.getElementById('addstaff').disabled = false;
+                      document.getElementById("IdValid").innerHTML = '';
+
+                    }
+
+
+                    // Check if 'V' is in the middle of the ID
+                    if (id.indexOf('V') !== id.length - 1) {
+                      document.getElementById('addstaff').style.backgroundColor = "red";
+                      document.getElementById('addstaff').disabled = true;
+                      document.getElementById("IdValid").innerHTML = 'Invalid NIC';
+                    } else {
+                      document.getElementById('addstaff').style.backgroundColor = "#6662e0";
+                      document.getElementById('addstaff').disabled = false;
+                      document.getElementById("IdValid").innerHTML = '';
+                    }
 
                   }
                   if (this.readyState == 4 && this.status == 200) {
@@ -267,36 +273,32 @@ session_start();
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send("value=" + inputValue);
               }
-              
+
               //email mustbe contain @ and .  and before the @ mustbe contain 3 characters or more
               document.getElementById("staff_email").addEventListener("input", function() {
-                                                var email = document.getElementById("staff_email").value;
+                var email = document.getElementById("staff_email").value;
 
-                                                if(email.includes('@') && email.includes('.')){
-                                          
-                                                    document.getElementById("addstaff").disabled = false;
-                                                }else{
-                                                    document.getElementById("addstaff").disabled = true;
-                                                }
-                                            });
-            
+                if (email.includes('@') && email.includes('.')) {
 
-              
-             
-                                            </script>
+                  document.getElementById("addstaff").disabled = false;
+                } else {
+                  document.getElementById("addstaff").disabled = true;
+                }
+              });
+            </script>
 
             </script>
           </div>
         </div>
         <div class="table-responsive">
           <table class="table table-striped table-bordered">
-          <div class="d-flex justify-content-between mb-3">
-                            <div class="form-inline">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
-                        
-                            </div>
-                          
-                        </div>
+            <div class="d-flex justify-content-between mb-3">
+              <div class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+
+              </div>
+
+            </div>
             <thead>
               <tr>
                 <th>NIC</th>
@@ -393,17 +395,117 @@ session_start();
     </div>
   </div>
 
-  <script> //option to verify customer Mobile number  MOBILE SHOULD BE CONTAIN 10 DIGITS AND START WITH 0
+  <script>
+    //when mouse move in the body(id=page-top) it will check the first name,last name ,email ,monile number is verify or not
+    document.getElementById("page-top").addEventListener("mousemove", function() {
+      nic = document.getElementById("vanilaformfields").value;
+      var fname = document.getElementById("vanilaformfields1").value;
+      var lname = document.getElementById("vanilaformfields2").value;
+      var email = document.getElementById("staff_email").value;
+      var mobile = document.getElementById("staffmobile").value;
+      
+      //option to verify customer NIC number  NIC SHOULD BE CONTAIN more than 10 DIGITS also LAST LETTER can be V but V is not mandatory
+      if (nic.length >= 10) {
+        if (!/^\d+(V?)$/.test(nic)) {
+          nic_bool=true;
+          document.getElementById("addstaff").disabled = true;
+          document.getElementById("IdValid").innerHTML = 'Invalid NIC';
+           
+        } else {
+          nic_bool=false;
+          document.getElementById("addstaff").disabled = false;
+          document.getElementById("IdValid").innerHTML = '';
+        }
+      }else if(nic.length==0){
+        nic_bool=true;
+        document.getElementById("addstaff").disabled = true;
+        document.getElementById("IdValid").innerHTML = '';
+      }
+      else {
+        nic_bool=true;
+        document.getElementById("addstaff").disabled = true;
+        document.getElementById("IdValid").innerHTML = ' ';
+      }
 
-document.getElementById("staffmobile").addEventListener("input", function() {
-                                                var mobile = document.getElementById("staffmobile").value;
-                                                if(mobile.length == 10 && mobile.charAt(0) == 0){
-                                                    document.getElementById("addstaff").disabled = false;
-                                                }else{
-                                                    document.getElementById("addstaff").disabled = true;
-                                                }
-                                            });
-                                            </script>
+
+
+
+
+     
+
+      //option to verify customer Mobile number  MOBILE SHOULD BE CONTAIN 10 DIGITS AND START WITH 0
+
+      if (mobile.length == 10 && mobile.charAt(0) == 0) {
+        mobile_bool=false;
+        document.getElementById("addstaff").disabled = false;
+        document.getElementById("mobile").innerHTML = '';
+
+      } else {
+        if(mobile.length==0){
+        mobile_bool=true;
+          document.getElementById("addstaff").disabled = true;
+         document.getElementById("mobile").innerHTML = '';
+        }else{
+        mobile_bool=true;
+        document.getElementById("addstaff").disabled = true;
+         document.getElementById("mobile").innerHTML = 'Invalid Mobile Number2';
+      }
+    }
+    //first name only can contaion letters
+      if (fname.length > 0) {
+        if (!/^[a-zA-Z]*$/g.test(fname)) {
+          document.getElementById("addstaff").disabled = true;
+          document.getElementById("firstname").innerHTML = 'Invalid First Name';
+        } else {
+          document.getElementById("addstaff").disabled = false;
+          document.getElementById("firstname").innerHTML = '';
+        }
+      } else {
+        document.getElementById("addstaff").disabled = true;
+        document.getElementById("firstname").innerHTML = '';
+      }
+      //last name only can contain letters
+      if (lname.length > 0) {
+        if (!/^[a-zA-Z]*$/g.test(lname)) {
+          document.getElementById("addstaff").disabled = true;
+          document.getElementById("lastname").innerHTML = 'Invalid Last Name';
+        } else {
+          document.getElementById("addstaff").disabled = false;
+          document.getElementById("lastname").innerHTML = '';
+        }
+      } else {
+        document.getElementById("addstaff").disabled = true;
+        document.getElementById("lastname").innerHTML = '';
+      }
+      //email mustbe contain @ and . 
+      if (email.length > 0) {
+        if (email.includes('@') && email.includes('.')) {
+          email_bool=false;
+          document.getElementById("addstaff").disabled = false;
+          document.getElementById("email").innerHTML = '';
+        } else {
+          email_bool=true;
+          document.getElementById("addstaff").disabled = true;
+          document.getElementById("email").innerHTML = 'Invalid Email';
+        }
+      } else {
+        email_bool=true;
+        document.getElementById("addstaff").disabled = true;
+        document.getElementById("email").innerHTML = '';
+      }
+if(nic_bool==false && mobile_bool==false && email_bool==false){
+  document.getElementById("addstaff").disabled = false;
+  
+}else{
+  document.getElementById("addstaff").disabled = true;
+  
+
+
+}
+
+
+    });
+  </script>
   </div>
   <footer class="bg-white sticky-footer">
     <div class="container my-auto">

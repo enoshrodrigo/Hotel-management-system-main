@@ -165,48 +165,66 @@ session_start();
 ?>
                                         <script> 
  //email mustbe contain @ and .  
- document.getElementById("staffemail").addEventListener("input", function() {
+ document.getElementById("page-top").addEventListener("mousemove", function() {
                                                 var email = document.getElementById("staffemail").value;
 
                                                 if(email.includes('@') && email.includes('.')){
+                                                    email_verify=false;
                                           
                                                     document.getElementById("staffsubmit").disabled = false;
                                                 }else{
+                                                    email_verify=true;
                                                     document.getElementById("staffsubmit").disabled = true;
                                                 }
                                             });
 //option to verify customer Mobile number  MOBILE SHOULD BE CONTAIN 10 DIGITS AND START WITH 0
 
-document.getElementById("staffmobile").addEventListener("input", function() {
+document.getElementById("page-top").addEventListener("mousemove", function() {
                                                 var mobile = document.getElementById("staffmobile").value;
-                                                if(mobile.length == 10 && mobile.charAt(0) == 0){
+                                                if(mobile.length == 10 && mobile.charAt(0) == 0 && !isNaN(mobile)){
+                                                    mobile_verify=false;
                                                     document.getElementById("staffsubmit").disabled = false;
                                                 }else{
+                                                    mobile_verify=true;
                                                     document.getElementById("staffsubmit").disabled = true;
                                                 }
                                             });
 
               //GETH THE first name and last name from input fields the names must be contaion only letters
-                                            document.getElementById("staffname").addEventListener("input", function() {
+                                            document.getElementById("page-top").addEventListener("mousemove", function() {
                                                 var name = document.getElementById("staffname").value;
                                                 var letters = /^[A-Za-z]+$/;
                                                 if(name.match(letters)){
+                                                    name_verify=false;
                                                     document.getElementById("staffsubmit").disabled = false;
                                                 }else{
+                                                    name_verify=true;
                                                     document.getElementById("staffsubmit").disabled = true;
                                                 }
                                             });
 
-                                            document.getElementById("stafflname").addEventListener("input", function() {
+                                            document.getElementById("page-top").addEventListener("mousemove", function() {
+
                                                 var name = document.getElementById("stafflname").value;
                                                 var letters = /^[A-Za-z]+$/;
                                                 if(name.match(letters)){
+                                                    name_verify=false;
                                                     document.getElementById("staffsubmit").disabled = false;
                                                 }else{
+                                                    name_verify=true;
                                                     document.getElementById("staffsubmit").disabled = true;
                                                 }
                                             });
+                                            document.getElementById("page-top").addEventListener("mousemove", function() {          
+                                    if(email_verify==true || mobile_verify==true || name_verify==true){
+                                        document.getElementById("staffsubmit").disabled = true;
+                                    }else{
+                                        document.getElementById("staffsubmit").disabled = false;
+                                    }
 
+
+                                }
+                                );
                                             
                                             </script>
 
