@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2023 at 05:14 AM
+-- Generation Time: Jun 29, 2023 at 09:01 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -57,8 +57,8 @@ CREATE TABLE `bookedrooms` (
 --
 
 INSERT INTO `bookedrooms` (`bookedid`, `roomid`, `total`) VALUES
-(67, 3, 15550),
-(68, 1, 54100);
+(72, 3, 31000),
+(73, 1, 20400);
 
 -- --------------------------------------------------------
 
@@ -84,8 +84,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customerid`, `cfname`, `clname`, `cmobile`, `cemail`, `cdob`, `cregisterday`, `health`, `cdescription`, `cid`) VALUES
-('19902234686V', 'Kasun', 'Perera', '0778448644', 'kasun@gmail.com', '2005-06-01', '2023-04-09 18:09:34', '', '', 10),
-('199145657895V', 'Saman', 'Perera', '0779874566', 'saman@gmail.com', '1991-07-11', '2023-04-09 18:07:46', '', '', 9),
+('19902234686V', 'Kasun', 'PERERA', '0784587854', 'kasun@gmail.com', '2005-06-01', '2023-04-09 18:09:34', '', '', 10),
+('199145657895V', 'Samani', 'Perera', '0789564565', '@', '1991-06-11', '2023-04-09 18:07:46', '', '', 9),
 ('200098900875', 'Himaya', 'Nimnandi', '0778956477', 'himaya@gmail.com', '2000-03-22', '2023-04-09 18:06:37', 'good health no alageics', '', 8),
 ('200122100685', 'ENOSH', 'RODRIGO', '0757019974', 'enoshrodrigo930@gmail.com', '2001-08-08', '2023-03-15 18:15:03', 'good health no alageics', 'This is our 1st customer', 6),
 ('200122100858', 'Poorni', 'buddhima', '0778956788', 'poorni@gmail.com', '2001-05-09', '2023-02-12 22:19:31', '', '', 3);
@@ -114,9 +114,13 @@ CREATE TABLE `food` (
 --
 
 INSERT INTO `food` (`food_id`, `food_name`, `food_quntity`, `food_weight`, `food_measurement`, `food_unit_price`, `food_img`, `food_description`, `food_resgister_date`, `food_total`) VALUES
-(25, 'Chicken  ', 10, 1050, 'g', 1200, NULL, '', '2023-05-27 17:06:45', 12000),
-(27, 'Rice  ', 10, 2500, 'g', 1000, NULL, '', '2023-05-27 17:15:53', 10000),
-(29, 'Egg ', 50, 53655, 'g', 55.59, NULL, '', '2023-05-27 17:17:22', 2779.5);
+(27, 'Rice     ', 30, 30000, 'g', 500, NULL, '', '2023-05-27 17:15:53', 15000),
+(29, 'Egg   ', 50, 50000, 'g', 55.59, NULL, '', '2023-05-27 17:17:22', 0),
+(31, 'Milk', 5, 4900, 'ml', 140.564, NULL, NULL, '2023-06-29 01:30:32', 702.82),
+(32, 'Flour', 10, 9300, 'g', 100, NULL, NULL, '2023-06-29 13:46:02', 1000),
+(33, 'oil', 5, 4950, 'ml', 500, NULL, NULL, '2023-06-29 13:46:02', 2500),
+(34, 'Chicken', 10, 9832, 'g', 1200, NULL, NULL, '2023-06-29 13:46:02', 12000),
+(35, 'chil powder', 10, 10000, 'g', 500, NULL, NULL, '2023-06-29 22:46:59', 5000);
 
 -- --------------------------------------------------------
 
@@ -153,7 +157,10 @@ INSERT INTO `history` (`historyid`, `historycustomerid`, `historyroomid`, `histo
 (83, '199145657895V', 16, NULL, '2023-06-03 23:39:43', '2023-06-04 15:04:58', 96000),
 (85, '200098900875', 3, NULL, '2023-06-21 20:58:42', '2023-06-22 00:37:32', 33160),
 (86, '200098900875', 17, NULL, '2023-06-24 09:30:17', '2023-06-25 21:52:12', 40000),
-(87, '200098900875', 15, NULL, '2023-06-26 20:26:34', '2023-06-26 23:58:51', 25550);
+(87, '200098900875', 15, NULL, '2023-06-26 20:26:34', '2023-06-26 23:58:51', 25550),
+(89, '19902234686V', 3, NULL, '2023-06-26 19:50:42', '2023-06-27 12:44:48', 17100),
+(90, '19902234686V', 3, NULL, '2023-06-28 21:19:07', '2023-06-29 00:56:52', 3500),
+(91, '199145657895V', 15, NULL, '2023-06-28 21:19:31', '2023-06-29 02:20:46', 169200);
 
 -- --------------------------------------------------------
 
@@ -197,9 +204,10 @@ CREATE TABLE `placedorder` (
 --
 
 INSERT INTO `placedorder` (`order_id`, `order_roomnumid`, `order_recipe_id`, `order_customerName`, `order_time`, `order_status`, `order_quantity`, `order_total`, `order_placedBy`) VALUES
-(73, 1, 24, 'Kasun', '2023-06-26 23:53:48', 1, 2, 3100, 'Admin'),
-(74, 3, 24, 'Kasun', '2023-06-26 23:55:29', 1, 1, 1550, 'Admin'),
-(75, 15, 24, 'Himaya', '2023-06-26 23:56:56', 1, 1, 1550, 'Admin');
+(77, 15, 25, 'Samani', '2023-06-29 01:55:57', 1, 1, 1200, 'Admin'),
+(78, 3, 26, 'Kasun', '2023-06-29 13:58:40', 1, 2, 7600, 'Admin'),
+(79, 1, 25, 'Samani', '2023-06-29 14:01:53', 0, 2, 2400, 'Admin'),
+(80, 3, 25, 'Kasun', '2023-06-29 14:02:36', 0, 2, 2400, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -220,7 +228,8 @@ CREATE TABLE `recipe` (
 --
 
 INSERT INTO `recipe` (`recipe_id`, `recipe_name`, `recipe_ingredients`, `recipe_price`, `realCost`) VALUES
-(24, 'Fried rice', '[{\"FoodId\":\"27\",\"FoodName\":\"Rice  \",\"MessureValue\":\"500\",\"Messure\":\"g\"},{\"FoodId\":\"25\",\"FoodName\":\"Chicken  \",\"MessureValue\":\"1000\",\"Messure\":\"g\"}]', 1550, 1333.3333333333298);
+(25, 'Fried rice', '[{\"FoodId\":\"29\",\"FoodName\":\"Egg \",\"MessureValue\":\"51\",\"Messure\":\"g\"},{\"FoodId\":\"31\",\"FoodName\":\"Milk\",\"MessureValue\":\"20\",\"Messure\":\"ml\"},{\"FoodId\":\"27\",\"FoodName\":\"Rice  \",\"MessureValue\":\"20\",\"Messure\":\"g\"}]', 1200, 1079.71513449487),
+(26, 'Kottu', '[{\"FoodId\":\"33\",\"FoodName\":\"oil\",\"MessureValue\":\"25\",\"Messure\":\"ml\"},{\"FoodId\":\"32\",\"FoodName\":\"Flour\",\"MessureValue\":\"350\",\"Messure\":\"g\"},{\"FoodId\":\"29\",\"FoodName\":\"Egg \",\"MessureValue\":\"10\",\"Messure\":\"g\"},{\"FoodId\":\"34\",\"FoodName\":\"Chicken\",\"MessureValue\":\"80\",\"Messure\":\"g\"},{\"FoodId\":\"34\",\"FoodName\":\"Chicken\",\"MessureValue\":\"4\",\"Messure\":\"g\"}]', 3800, 3799.8884691491303);
 
 -- --------------------------------------------------------
 
@@ -287,9 +296,9 @@ CREATE TABLE `roomdetail` (
 --
 
 INSERT INTO `roomdetail` (`roomnumid`, `roomtype`, `capacity`, `amenities`, `roomfloor`, `roomview`, `price`, `status`, `description`, `ac`, `tv`, `wifi`, `kitchen`, `fridge`, `register_date`, `givedate`, `customerid`) VALUES
-(1, 1, 1, NULL, 0, NULL, 3000, 0, 'single room', 1, 1, 0, 0, 1, '2023-06-26 20:11:54', '2023-07-13 23:41:00', '19902234686V'),
+(1, 1, 1, NULL, 0, NULL, 3000, 0, 'single room', 1, 1, 0, 0, 1, '2023-06-29 10:31:40', '2023-07-05 14:01:00', '199145657895V'),
 (2, 1, 1, NULL, 0, NULL, 5000, 1, NULL, 1, 0, 1, 0, 0, '2023-05-27 20:50:00', '2023-05-30 00:19:00', '19902234686V'),
-(3, 2, 2, NULL, 0, NULL, 3500, 0, NULL, 1, 1, 1, 0, 1, '2023-06-26 19:50:42', '2023-06-30 23:20:00', '19902234686V'),
+(3, 2, 2, NULL, 0, NULL, 3500, 0, NULL, 1, 1, 1, 0, 1, '2023-06-29 10:23:25', '2023-07-05 13:53:00', '19902234686V'),
 (5, 1, 1, NULL, 0, NULL, 3000, 1, NULL, 1, 1, 1, 0, 0, '2023-05-27 20:59:40', '2023-05-31 00:28:00', '19902234686V'),
 (6, 2, 2, NULL, 1, NULL, 4000, 1, 'Double room', 1, 1, 1, 1, 1, NULL, NULL, NULL),
 (7, 2, 2, NULL, 1, NULL, 3800, 1, NULL, 1, 1, 1, 0, 1, NULL, NULL, NULL),
@@ -300,9 +309,9 @@ INSERT INTO `roomdetail` (`roomnumid`, `roomtype`, `capacity`, `amenities`, `roo
 (12, 2, 4, NULL, 1, NULL, 5000, 1, NULL, 1, 1, 0, 1, 1, '2023-05-27 13:54:25', '2023-05-31 17:24:00', '200122100685'),
 (13, 4, 2, NULL, 1, NULL, 4800, 1, NULL, 1, 1, 1, 0, 1, NULL, NULL, NULL),
 (14, 4, 2, NULL, 1, NULL, 5000, 1, NULL, 1, 1, 1, 1, 1, '2023-05-27 21:01:24', '2023-06-02 00:35:00', '200122100685'),
-(15, 3, 4, NULL, 2, NULL, 6000, 1, NULL, 1, 1, 1, 0, 0, '2023-06-26 20:26:34', '2023-06-30 23:56:00', '200098900875'),
+(15, 3, 4, NULL, 2, NULL, 6000, 1, NULL, 1, 1, 1, 0, 0, '2023-06-28 21:19:31', '2023-07-27 00:49:00', '199145657895V'),
 (16, 3, 4, NULL, 2, NULL, 8000, 1, NULL, 1, 1, 1, 0, 1, '2023-06-03 23:39:43', '2023-06-16 03:09:00', '199145657895V'),
-(17, 3, 6, NULL, 2, NULL, 8000, 1, NULL, 1, 1, 1, 1, 1, '2023-06-24 09:30:17', '2023-06-29 13:00:00', '200098900875'),
+(17, 3, 6, NULL, 2, NULL, 0, 1, NULL, 1, 1, 1, 1, 1, '2023-06-24 09:30:17', '2023-06-29 13:00:00', '200098900875'),
 (18, 3, 4, NULL, 2, NULL, 7000, 1, NULL, 1, 1, 1, 1, 1, NULL, NULL, NULL),
 (19, 1, 1, NULL, 1, NULL, 3800, 1, NULL, 1, 1, 1, 0, 1, '2023-04-09 14:50:20', '2023-04-11 18:19:00', '200122100858'),
 (20, 1, 1, NULL, 1, NULL, 3500, 1, NULL, 1, 1, 1, 1, 0, '2023-05-12 07:37:40', '2023-05-12 11:06:00', '199145657895V');
@@ -428,25 +437,25 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `bookedrooms`
 --
 ALTER TABLE `bookedrooms`
-  MODIFY `bookedid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `bookedid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `historyid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `historyid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `kitchens`
@@ -458,13 +467,13 @@ ALTER TABLE `kitchens`
 -- AUTO_INCREMENT for table `placedorder`
 --
 ALTER TABLE `placedorder`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `recipe`
 --
 ALTER TABLE `recipe`
-  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `recipe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -488,7 +497,7 @@ ALTER TABLE `roomdetail`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables

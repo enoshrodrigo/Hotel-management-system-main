@@ -46,7 +46,7 @@ session_start();
 
             <div class="card shadow">
                 <div class="card-header py-3" id="addcustomer">
-                    <p class="text-primary m-0 fw-bold" id="addcustomer">Food Manage
+                    <p class="text-primary m-0 fw-bold" id="addcustomer">Food Manage(ingriednts)
                         <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" style="float:right;margin-left: 14px;" id="add_food">Add Foods</a>
                         <a class="btn btn-primary btn-sm d-none d-sm-inline-block" href="./edit-kitchen.php" style="float:right;" id="edit_food">Edit ingriednts</a>
 
@@ -66,7 +66,7 @@ session_start();
 
 
                                     <div class="col-md-6">
-                                        <label for="food_name">Food name:</label>
+                                        <label for="food_name">Food name:(ingriednt name)</label>
                                         <input type="text" name="food_name[]"  id="Foodname1";autocomplete="off" autocomplete="off" class="form-control" required>
                                         <span id="food_name_status"></span>
                                     </div>
@@ -124,7 +124,7 @@ session_start();
                                 <div class="divider m-4"></div>
                              
                                 <div class="col-md-6">
-                                    <label for="food_name">Food name:</label>
+                                    <label for="food_name">Food name:(ingrident name)</label>
                                     <input type="text" name="food_name[]" id="Foodname${idAuto}" autocomplete="off" class="form-control">
                                     
                                 </div>

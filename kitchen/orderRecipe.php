@@ -36,8 +36,8 @@ require_once('../dbConnection/connect.php');
 
             <div class="card shadow">
                 <div class="card-header py-3" id="addrecipe">
-                    <p class="text-primary m-0 fw-bold" id="addrecipe">Recipes
-                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" style="float:right;" id="add_recipe">Add Recipes</a>
+                    <p class="text-primary m-0 fw-bold" id="addrecipe">Place order
+                        <!-- <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" style="float:right;" id="add_recipe">Add Recipes</a> -->
                     <h1 id="demo"></h1>
                     </p>
                 </div>

@@ -334,7 +334,7 @@ session_start();
                                     <br>
                                     <div style=" margin-bottom:14px">
                                         <input type="reset" name="Reset" class="btn btn-primary">
-                                        <input type="submit" name="submit" class="btn btn-primary" value="Reservation" style="float:right;" id="addstaff">
+                                        <input type="submit" name="submit" class="btn btn-primary" value="Book" style="float:right;" id="addstaff">
                                     </div>
                                 </div>
 
